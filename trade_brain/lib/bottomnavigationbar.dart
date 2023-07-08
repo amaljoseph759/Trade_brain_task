@@ -13,7 +13,7 @@ class BottomNavbar extends StatefulWidget {
 
 class _BottomNavbarState extends State<BottomNavbar> {
   int index = 0;
-  final screens = [const Homepage(), const Wishlist()];
+  final screens = [Homepage(), Wishlist()];
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
                   label: "Home",
                   backgroundColor: Colors.grey),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.logo_dev),
+                  icon: Icon(Icons.favorite),
                   label: "Wishlist",
                   backgroundColor: Colors.grey),
             ]),
