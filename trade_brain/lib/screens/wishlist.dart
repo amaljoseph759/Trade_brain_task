@@ -11,7 +11,7 @@ class Wishlist extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("wishlist"),
+        title: const Text("wishlist"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -34,7 +34,7 @@ class Wishlist extends StatelessWidget {
                               backgroundColor: Colors.red,
                               colorText: Colors.white);
                         },
-                        icon: Icon(Icons.add),
+                        icon: const Icon(Icons.remove_circle_outline),
                       ),
                     );
                   })),

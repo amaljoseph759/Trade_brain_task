@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
-  await Hive.initFlutter();
-  await Hive.openBox('stocksBox');
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Hive.initFlutter();
+  // await Hive.openBox('stocksBox');
   runApp(const MyApp());
 }
 
