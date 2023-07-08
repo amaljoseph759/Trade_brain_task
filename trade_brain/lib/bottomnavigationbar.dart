@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trade_brain/screens/homepage.dart';
 import 'package:trade_brain/screens/wishlist.dart';
+
+import 'controller/home_controller.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({
@@ -12,6 +15,8 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
+  StockController stockcontoller = Get.put(StockController());
+
   int index = 0;
   final screens = [Homepage(), Wishlist()];
 
@@ -38,6 +43,11 @@ class _BottomNavbarState extends State<BottomNavbar> {
             currentIndex: index,
             onTap: (index) => setState(() {
                   this.index = index;
+                  if (index == 1) {
+                    print("amal");
+                    stockcontoller.stocks.value = [];
+                    //stockcontoller.dispose();
+                  }
                 }),
             items: const [
               BottomNavigationBarItem(

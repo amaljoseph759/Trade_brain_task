@@ -18,47 +18,48 @@ class Homepage extends StatelessWidget {
           title: const Text("Homepage"),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                TextField(
-                  onChanged: ((value) {
-                    stockcontoller.searchStocks(value);
-                  }
-                      //placeController.serchtext.value = value
-                      ),
-                  decoration: const InputDecoration(labelText: 'search'),
-                ),
-                Obx(() => stockcontoller.isLoading.isTrue
-                    ? CircularProgressIndicator()
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: stockcontoller.stocks.length,
-                        itemBuilder: (BuildContext, index) {
-                          final stock = stockcontoller.stocks[index];
-                          return ListTile(
-                            title: Text(stock.name),
-                            subtitle: Text(
-                                'Price: ${stock.price.toStringAsFixed(2)}'),
-                            trailing: IconButton(
-                              onPressed: () {
-                                wishListconroller.add(
-                                  Stock(name: stock.name, price: stock.price),
-                                );
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextField(
+                onChanged: ((value) {
+                  stockcontoller.searchStocks(value);
+                }
+                    //placeController.serchtext.value = value
+                    ),
+                decoration: const InputDecoration(labelText: 'search'),
+              ),
+              Obx(() => stockcontoller.isLoading.isTrue
+                  ? CircularProgressIndicator()
+                  : Expanded(
+                      child: ListView.builder(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: stockcontoller.stocks.length,
+                          itemBuilder: (BuildContext, index) {
+                            final stock = stockcontoller.stocks[index];
+                            return ListTile(
+                              title: Text(stock.name),
+                              subtitle: Text(
+                                  'Price: ${stock.price.toStringAsFixed(2)}'),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  wishListconroller.add(
+                                    Stock(name: stock.name, price: stock.price),
+                                  );
 
-                                Get.snackbar(
-                                    "Message", "item added to the wishList",
-                                    colorText: Colors.white,
-                                    backgroundColor: Colors.green);
-                              },
-                              icon: Icon(Icons.add),
-                            ),
-                          );
-                        })),
-              ],
-            ),
+                                  Get.snackbar(
+                                      "Message", "item added to the wishList",
+                                      colorText: Colors.white,
+                                      backgroundColor: Colors.green);
+                                },
+                                icon: Icon(Icons.add),
+                              ),
+                            );
+                          }),
+                    )),
+            ],
           ),
         ));
   }

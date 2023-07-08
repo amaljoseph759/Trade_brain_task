@@ -58,4 +58,11 @@ class StockController extends GetxController {
       }
     }
   }
+
+  @override
+  void dispose() {
+    searchStocks("keyword");
+    // TODO: implement dispose
+    super.dispose();
+  }
 }
